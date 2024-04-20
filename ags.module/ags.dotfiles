@@ -1,0 +1,7 @@
+lib:.config/ags/lib
+Media.js:.config/ags/Media.js
+Notification.js:.config/ags/Notification.js
+NotificationPopups.js:.config/ags/NotificationPopups.js
+config.js:.config/ags/config.js
+options.js:.config/ags/options.js
+style.css:.config/ags/style.css

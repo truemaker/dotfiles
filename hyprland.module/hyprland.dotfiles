@@ -1,0 +1,4 @@
+scripts:.config/hypr/scripts
+env.conf:.config/hypr/env.conf
+hyprland.conf:.config/hypr/hyprland.conf
+startup.conf:.config/hypr/startup.conf
