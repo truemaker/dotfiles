@@ -1,0 +1,5 @@
+require("programmerlexi.settings")
+require("programmerlexi.keybinds")
+require("programmerlexi.plugins")
+require("programmerlexi.visual")
+require("programmerlexi.lsp")
