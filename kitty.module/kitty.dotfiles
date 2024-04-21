@@ -1,0 +1,3 @@
+colors.conf:.config/kitty/colors.conf
+kitty.conf:.config/kitty/kitty.conf
+tokyonight.conf:.config/kitty/tokyonight.conf

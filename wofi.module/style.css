@@ -1,0 +1,60 @@
+/*:root {
+    --pri-bg-col: #1A1B26;
+    --snd-bg-col: #383C4A;
+    --entry-even-bg-col: #404552;
+    --entry-sel-bg-col: #4C556A;
+    --pri-fg-col: #ffffff;
+}*/
+
+* {
+  font-family: "Fira Code", monospace;
+}
+
+window {
+  background-color: #1a1b26;
+  border: none;
+  border-radius: 8px;
+}
+
+#input {
+  margin: 1px;
+  border-radius: 8px;
+  border: none;
+  background-color: #1a1b26;
+  color: #a9b1d6;
+}
+
+#inner-box {
+  background-color: #1a1b26;
+}
+
+#outer-box {
+  margin: 1px;
+  padding: 1px;
+  background-color: #1a1b26;
+}
+
+#scroll {
+  margin: 2px;
+}
+
+#text {
+  padding: 4px;
+  color: #a9b1d6;
+}
+
+#entry {
+  border: none;
+  border-radius: 8px
+}
+
+#entry:nth-child(even) {
+  background-color: #1a1b26;
+
+  #entry:selected {
+    background-color: #28344a;
+  }
+
+  #text:selected {
+    background: transparent;
+  }

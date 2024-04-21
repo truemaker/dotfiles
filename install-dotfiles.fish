@@ -32,8 +32,8 @@ for module in $modules
       echo "Linking" $line
       set -l link_info (string split -- ":" $line)
       mkdir -p (echo (path dirname ~/$link_info[2]))
-      rm -f (path resolve ~/$link_info[2])
-      ln -sf (path resolve $module/$link_info[1]) -T (path resolve ~/$link_info[2])
+      rm -f (path normalize ~/$link_info[2])
+      ln -sf $PWD/$module/$link_info[1] -T (path normalize ~/$link_info[2])
     end < $dotfile_descriptor
   end
 end
