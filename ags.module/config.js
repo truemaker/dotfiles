@@ -7,6 +7,8 @@ const audio = await Service.import('audio');
 const battery = await Service.import('battery');
 const systemtray = await Service.import('systemtray');
 
+import brightness from './Brightness.js';
+
 import MediaWidget from './Media.js';
 import NotificationPopups from './NotificationPopups.js';
 
@@ -147,26 +149,42 @@ const Volume = () => Widget.Box({
   ],
 });
 
+String.prototype.toRemTime = function() {
+  var sec_num = parseInt(this, 10); // don't forget the second param
+  var hours = Math.floor(sec_num / 3600);
+  var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+  // var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+  if (hours < 10) { hours = "0" + hours; }
+  if (minutes < 10) { minutes = "0" + minutes; }
+  // if (seconds < 10) { seconds = "0" + seconds; }
+  return hours + ':' + minutes;
+} // Stupidity
+
 const BatteryLabel = () => Widget.Box({
   class_name: 'battery',
   visible: battery.bind('available'),
   children: [
     Widget.Icon({
-      icon: battery.bind('percent').as(p =>
-        `battery-level-${Math.floor(p / 10) * 10}-symbolic`,
-      ),
+      icon: battery.bind('icon-name'),
     }),
-    /*Widget.ProgressBar({
-        vpack: 'center',
-        fraction: battery.bind('percent').as(p =>
-            p > 0 ? p / 100 : 0,
-        ),
-    }),*/
     Widget.Label({
       label: battery.bind('percent').as(p => `${p > 0 ? p : 0}%`)
     }),
+    Widget.Label({
+      label: battery.bind('time-remaining').as(t => ` (${`${t}`.toRemTime()})`)
+    })
   ],
 });
+
+const BatteryCircle = () => Widget.CircularProgress({
+  child: Widget.Icon({
+    icon: battery.bind('icon_name')
+  }),
+  visible: battery.bind('available'),
+  value: battery.bind('percent').as(p => p > 0 ? p / 100 : 0),
+  class_name: battery.bind('charging').as(ch => ch ? 'charging' : ''),
+})
 
 const SysTray = () => Widget.Box({
   class_name: 'trays',
@@ -180,6 +198,14 @@ const SysTray = () => Widget.Box({
   ),
 });
 
+const Brightness = () => Widget.Box({
+  children: [
+    Widget.Label({
+      label: brightness.bind('screen-value').as(v => `${Math.round(v * 100)}%`),
+    })
+  ]
+});
+
 // layout of the bar
 const TopLeft = () => Widget.Box({
   spacing: 8,
@@ -191,17 +217,25 @@ const TopLeft = () => Widget.Box({
 
 const TopCenter = () => Widget.Box({
   spacing: 8,
+  hpack: 'center',
   children: [
     Workspaces(),
   ],
 });
 
-const TopRight = () => Widget.Box({
-  hpack: 'end',
+const TopRightStart = () => Widget.Box({
+  hpack: 'start',
   spacing: 8,
   children: [
     Volume(),
     BatteryLabel(),
+    Brightness()
+  ],
+});
+
+const TopRightEnd = () => Widget.Box({
+  spacing: 8,
+  children: [
     SysTray(),
     Widget.Button({
       on_primary_click: () => { App.toggleWindow('bottom-bar') },
@@ -213,8 +247,18 @@ const TopRight = () => Widget.Box({
   ],
 });
 
+const TopRight = () => Widget.Box({
+  hpack: 'end',
+  spacing: 8,
+  children: [
+    TopRightStart(),
+    TopRightEnd(),
+  ],
+});
+
 const BottomCenter = () => Widget.Box({
   spacing: 8,
+  hpack: 'center',
   children: [
     EasyEffects(),
   ],
