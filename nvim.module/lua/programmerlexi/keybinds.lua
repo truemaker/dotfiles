@@ -57,6 +57,7 @@ keymap({
 
     ['<leader>tbf'] = { '<cmd> Telescope buffers <CR>', "Show buffers" },
     ['<leader>tsf'] = { '<cmd> Telescope find_files <CR>', "Find files" },
+    ['<leader>tlg'] = { '<cmd> Telescope live_grep <CR>', "Find files" },
     ['<leader>tts'] = { '<cmd> Telescope treesitter <CR>', "Treesitter" },
     ['<leader>tkb'] = { '<cmd> Telescope keymaps <CR>', "Keymaps" },
     ['<leader>tst'] = { '<cmd> Telescope symbols <CR>', "Show symbols" },
