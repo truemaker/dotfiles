@@ -68,6 +68,8 @@ keymap({
     ['<leader>gp'] = { '<cmd> Gitsigns preview_hunk <CR>', "Preview git hunk" },
     ['<leader>gb'] = { '<cmd> Gitsigns toggle_current_line_blame <CR>' },
 
+    ['<leader>i'] = { '<cmd> lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) <CR>', "Toggle inlay hints" }
+
   },
   ["visual"] = {
     ['J'] = { ":m '>+1<CR>gv=gv", "Move line down" },

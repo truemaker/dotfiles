@@ -34,7 +34,7 @@ vim.o.confirm = true
 vim.api.nvim_command("filetype plugin indent on")
 vim.g.vimtex_view_method = 'zathura'
 
-vim.o.nocompatible = true
+-- vim.o.nocompatible = true
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "text", "markdown", "vimwiki" },

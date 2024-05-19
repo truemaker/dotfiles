@@ -91,15 +91,20 @@ require("lazy").setup({
   -- Autocompletion
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
-  { "rafamadriz/friendly-snippets" },
+  {},
   {
     'L3MON4D3/LuaSnip',
     dependencies = {
-      'saadparwaiz1/cmp_luasnip'
-    }
+      'rafamadriz/friendly-snippets',
+      'saadparwaiz1/cmp_luasnip',
+    },
+    init = function()
+      local luasnip = require("luasnip")
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end
   },
   -- LSP
-  { 'VonHeikemen/lsp-zero.nvim',   branch = 'v2.x' },
+  { 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x' },
   -- Debugger
   'mfussenegger/nvim-dap',
   'rcarriga/nvim-dap-ui',
@@ -209,6 +214,14 @@ require("lazy").setup({
         line_number_text    = "Line %s out of %s",  -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
         terminal_text       = "Using Terminal",     -- Format string rendered when in terminal mode.
       })
+    end
+  },
+  {
+    'felpafel/inlay-hint.nvim',
+    event = 'LspAttach',
+    config = true,
+    init = function()
+      require('inlay-hint').setup({ virt_text_pos = 'inline' })
     end
   },
   -- {'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' }}
