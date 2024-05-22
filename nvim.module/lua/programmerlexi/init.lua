@@ -1,3 +1,4 @@
+vim.loader.enable()
 require("programmerlexi.settings")
 require("programmerlexi.keybinds")
 require("programmerlexi.plugins")

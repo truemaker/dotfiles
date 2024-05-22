@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Install Plugins
 require("lazy").setup({
-  'nvimtools/none-ls.nvim',
+  { 'nvimtools/none-ls.nvim' },
   {
     'goolord/alpha-nvim',
     dependencies = {
@@ -91,7 +91,6 @@ require("lazy").setup({
   -- Autocompletion
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
-  {},
   {
     'L3MON4D3/LuaSnip',
     dependencies = {
@@ -104,7 +103,7 @@ require("lazy").setup({
     end
   },
   -- LSP
-  { 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x' },
+  { 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x', event = "LspAttach" },
   -- Debugger
   'mfussenegger/nvim-dap',
   'rcarriga/nvim-dap-ui',
@@ -122,7 +121,7 @@ require("lazy").setup({
     end
   },
   -- GLSL
-  { "tikhomirov/vim-glsl", ft = "glsl" },
+  { "tikhomirov/vim-glsl",       ft = "glsl" },
   -- Statusline
   {
     "famiu/feline.nvim",
@@ -155,7 +154,7 @@ require("lazy").setup({
     end
   },
   'vimwiki/vimwiki',
-  { "folke/neodev.nvim",   opts = {} },
+  { "folke/neodev.nvim", opts = {} },
   "rcarriga/nvim-notify",
   "folke/todo-comments.nvim",
   {
